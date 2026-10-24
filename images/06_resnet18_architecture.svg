@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 300" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1150" height="300" fill="#ffffff"/>
+  <text x="575" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">ResNet18 architecture (11.7 M params · 1.8 GMACs)</text>
+
+  <g font-size="13" fill="#0f172a" text-anchor="middle">
+    <rect x="20" y="90" width="100" height="110" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="70" y="130" font-weight="700">Input</text>
+    <text x="70" y="152" font-size="12">3×224×224</text>
+
+    <rect x="145" y="90" width="120" height="110" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="205" y="125" font-weight="700">Stem</text>
+    <text x="205" y="147" font-size="12">Conv 7×7 /2</text>
+    <text x="205" y="165" font-size="12">MaxPool /2</text>
+    <text x="205" y="185" font-size="11" fill="#475569">64×56×56</text>
+
+    <rect x="290" y="90" width="130" height="110" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="355" y="125" font-weight="700">layer1</text>
+    <text x="355" y="147" font-size="12">2 × BasicBlock</text>
+    <text x="355" y="185" font-size="11" fill="#475569">64×56×56</text>
+
+    <rect x="445" y="90" width="130" height="110" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="510" y="125" font-weight="700">layer2</text>
+    <text x="510" y="147" font-size="12">2 × BasicBlock /2</text>
+    <text x="510" y="185" font-size="11" fill="#475569">128×28×28</text>
+
+    <rect x="600" y="90" width="130" height="110" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="665" y="125" font-weight="700">layer3</text>
+    <text x="665" y="147" font-size="12">2 × BasicBlock /2</text>
+    <text x="665" y="185" font-size="11" fill="#475569">256×14×14</text>
+
+    <rect x="755" y="90" width="130" height="110" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="820" y="125" font-weight="700">layer4</text>
+    <text x="820" y="147" font-size="12">2 × BasicBlock /2</text>
+    <text x="820" y="185" font-size="11" fill="#475569">512×7×7</text>
+
+    <rect x="910" y="90" width="100" height="110" rx="10" fill="#fdf4ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="960" y="130" font-weight="700">AvgPool</text>
+    <text x="960" y="152" font-size="12">global</text>
+    <text x="960" y="185" font-size="11" fill="#475569">512</text>
+
+    <rect x="1035" y="90" width="100" height="110" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="1085" y="130" font-weight="700">FC</text>
+    <text x="1085" y="152" font-size="12">512 → 1000</text>
+    <text x="1085" y="185" font-size="11" fill="#475569">logits</text>
+  </g>
+  <g stroke="#475569" stroke-width="2">
+    <line x1="120" y1="145" x2="143" y2="145" marker-end="url(#a)"/>
+    <line x1="265" y1="145" x2="288" y2="145" marker-end="url(#a)"/>
+    <line x1="420" y1="145" x2="443" y2="145" marker-end="url(#a)"/>
+    <line x1="575" y1="145" x2="598" y2="145" marker-end="url(#a)"/>
+    <line x1="730" y1="145" x2="753" y2="145" marker-end="url(#a)"/>
+    <line x1="885" y1="145" x2="908" y2="145" marker-end="url(#a)"/>
+    <line x1="1010" y1="145" x2="1033" y2="145" marker-end="url(#a)"/>
+  </g>
+
+  <!-- basic block legend -->
+  <g font-size="12" fill="#0f172a">
+    <text x="290" y="240" font-weight="700">BasicBlock:</text>
+    <rect x="380" y="225" width="110" height="26" rx="6" fill="#fff" stroke="#22c55e"/>
+    <text x="435" y="243" text-anchor="middle">Conv3×3·BN·ReLU</text>
+    <rect x="510" y="225" width="95" height="26" rx="6" fill="#fff" stroke="#22c55e"/>
+    <text x="557" y="243" text-anchor="middle">Conv3×3·BN</text>
+    <circle cx="630" cy="238" r="12" fill="#fff" stroke="#22c55e"/>
+    <text x="630" y="243" text-anchor="middle" font-size="14">+</text>
+    <rect x="660" y="225" width="50" height="26" rx="6" fill="#fff" stroke="#22c55e"/>
+    <text x="685" y="243" text-anchor="middle">ReLU</text>
+    <path d="M370,238 C370,280 630,280 630,252" fill="none" stroke="#64748b" stroke-dasharray="4 3" marker-end="url(#a)"/>
+    <text x="500" y="286" text-anchor="middle" fill="#475569">skip connection (identity, or 1×1 conv when downsampling)</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.5">
+    <line x1="490" y1="238" x2="508" y2="238" marker-end="url(#a)"/>
+    <line x1="605" y1="238" x2="616" y2="238" marker-end="url(#a)"/>
+    <line x1="642" y1="238" x2="658" y2="238" marker-end="url(#a)"/>
+  </g>
+</svg>

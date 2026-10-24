@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="430" fill="#ffffff"/>
+  <text x="550" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Development environment</text>
+
+  <!-- PC -->
+  <rect x="20" y="60" width="700" height="350" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="370" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">Windows 11 PC (x86-64, CPU only)</text>
+
+  <rect x="45" y="105" width="300" height="285" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="195" y="132" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">Windows Python venv</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="65" y="162">• Python 3.x  (.restnetenv)</text>
+    <text x="65" y="186">• torch, torchvision</text>
+    <text x="65" y="210">• safetensors, onnx, onnxruntime</text>
+    <text x="65" y="234">• numpy, pillow, pyarrow</text>
+    <text x="65" y="258">• hf CLI (huggingface_hub)</text>
+    <text x="65" y="296" font-weight="700">Runs:</text>
+    <text x="65" y="320">export_onnx.py, prep_data.py</text>
+  </g>
+
+  <rect x="395" y="105" width="300" height="285" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+  <text x="545" y="132" text-anchor="middle" font-size="15" font-weight="700" fill="#15803d">WSL2 · Ubuntu 22.04</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="415" y="162">• Python 3.10 venv</text>
+    <text x="415" y="186">  ~/hailo/hailo8/.venv</text>
+    <text x="415" y="210">• Hailo Dataflow Compiler 3.34.0</text>
+    <text x="415" y="234">• HailoRT 4.24.0 (hailortcli)</text>
+    <text x="415" y="258">• Hailo Model Zoo 2.19.0</text>
+    <text x="415" y="296" font-weight="700">Runs:</text>
+    <text x="415" y="320">compile_hailo.py</text>
+    <text x="415" y="344">hailortcli parse-hef</text>
+  </g>
+  <path d="M345,248 L393,248" stroke="#475569" stroke-width="2" marker-end="url(#a)" marker-start="url(#a)"/>
+  <text x="369" y="238" text-anchor="middle" font-size="11" fill="#475569">D:\ =</text>
+  <text x="369" y="270" text-anchor="middle" font-size="11" fill="#475569">/mnt/d</text>
+
+  <!-- Pi -->
+  <rect x="780" y="60" width="300" height="350" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
+  <text x="930" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#c2410c">Raspberry Pi 5 (arm64)</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="800" y="122">• Raspberry Pi OS Bookworm 64-bit</text>
+    <text x="800" y="146">• hailo-all (driver, firmware,</text>
+    <text x="800" y="170">  HailoRT, hailo_platform)</text>
+    <text x="800" y="194">• PCIe Gen 3 enabled</text>
+  </g>
+  <rect x="805" y="220" width="250" height="80" rx="10" fill="#fff" stroke="#f97316" stroke-width="2"/>
+  <text x="930" y="252" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">AI HAT+ · Hailo-8L</text>
+  <text x="930" y="276" text-anchor="middle" font-size="12" fill="#334155">13 TOPS · PCIe · /dev/hailo0</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="800" y="336" font-weight="700">Runs:</text>
+    <text x="800" y="360">hailortcli run · infer_pi.py</text>
+  </g>
+  <path d="M720,235 L778,235" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <text x="749" y="225" text-anchor="middle" font-size="11" fill="#475569">scp .hef</text>
+</svg>

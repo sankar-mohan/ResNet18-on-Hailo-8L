@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="470" fill="#ffffff"/>
+  <text x="600" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">ResNet18 → Hailo-8L: end-to-end pipeline</text>
+
+  <!-- zones -->
+  <rect x="20" y="60" width="370" height="380" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="205" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#1d4ed8">① Windows · PyTorch</text>
+  <rect x="410" y="60" width="560" height="380" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+  <text x="690" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#15803d">② WSL Ubuntu 22.04 · Hailo Dataflow Compiler 3.34</text>
+  <rect x="990" y="60" width="190" height="380" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
+  <text x="1085" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#c2410c">③ Raspberry Pi 5</text>
+
+  <!-- Windows boxes -->
+  <g font-size="14" fill="#0f172a">
+    <rect x="45" y="110" width="150" height="70" rx="10" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="120" y="138" text-anchor="middle" font-weight="700">Hugging Face</text>
+    <text x="120" y="158" text-anchor="middle" font-size="12">timm/resnet18.tv_in1k</text>
+
+    <rect x="215" y="110" width="150" height="70" rx="10" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="290" y="138" text-anchor="middle" font-weight="700">export_onnx.py</text>
+    <text x="290" y="158" text-anchor="middle" font-size="12">→ resnet18.onnx</text>
+
+    <rect x="45" y="300" width="150" height="70" rx="10" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="120" y="328" text-anchor="middle" font-weight="700">Imagenette</text>
+    <text x="120" y="348" text-anchor="middle" font-size="12">13,394 images (parquet)</text>
+
+    <rect x="215" y="300" width="150" height="70" rx="10" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="290" y="322" text-anchor="middle" font-weight="700">prep_data.py</text>
+    <text x="290" y="341" text-anchor="middle" font-size="12">calib_set.npy (512)</text>
+    <text x="290" y="358" text-anchor="middle" font-size="12">val_set.npz (500)</text>
+  </g>
+  <line x1="195" y1="145" x2="213" y2="145" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="195" y1="335" x2="213" y2="335" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- WSL boxes -->
+  <g font-size="14" fill="#0f172a">
+    <rect x="440" y="200" width="150" height="90" rx="10" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+    <text x="515" y="228" text-anchor="middle" font-weight="700">Parse</text>
+    <text x="515" y="248" text-anchor="middle" font-size="12">ONNX → Hailo graph</text>
+    <text x="515" y="272" text-anchor="middle" font-size="12" fill="#15803d">resnet18.har (float)</text>
+
+    <rect x="615" y="200" width="150" height="90" rx="10" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+    <text x="690" y="228" text-anchor="middle" font-weight="700">Optimize</text>
+    <text x="690" y="248" text-anchor="middle" font-size="12">normalize + int8 quant</text>
+    <text x="690" y="272" text-anchor="middle" font-size="12" fill="#15803d">resnet18_quantized.har</text>
+
+    <rect x="790" y="200" width="150" height="90" rx="10" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+    <text x="865" y="228" text-anchor="middle" font-weight="700">Compile</text>
+    <text x="865" y="248" text-anchor="middle" font-size="12">map to Hailo-8L</text>
+    <text x="865" y="272" text-anchor="middle" font-size="12" fill="#15803d">resnet18.hef (17.7 MB)</text>
+
+    <rect x="615" y="345" width="150" height="70" rx="10" fill="#fefce8" stroke="#eab308" stroke-width="2"/>
+    <text x="690" y="373" text-anchor="middle" font-weight="700">Simulator check</text>
+    <text x="690" y="393" text-anchor="middle" font-size="12">float 0.796 · int8 0.794</text>
+  </g>
+  <line x1="590" y1="245" x2="613" y2="245" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="765" y1="245" x2="788" y2="245" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="690" y1="290" x2="690" y2="343" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a)"/>
+
+  <!-- cross-zone arrows -->
+  <path d="M365,145 C410,145 410,230 438,230" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M365,335 C500,335 600,320 650,292" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <text x="430" y="372" font-size="12" fill="#475569">calibration + validation data</text>
+
+  <!-- Pi box -->
+  <g font-size="14" fill="#0f172a">
+    <rect x="1010" y="200" width="150" height="90" rx="10" fill="#fff" stroke="#f97316" stroke-width="2"/>
+    <text x="1085" y="228" text-anchor="middle" font-weight="700">AI HAT (Hailo-8L)</text>
+    <text x="1085" y="248" text-anchor="middle" font-size="12">HailoRT 4.24</text>
+    <text x="1085" y="272" text-anchor="middle" font-size="12">infer_pi.py · hailortcli</text>
+  </g>
+  <line x1="940" y1="245" x2="1008" y2="245" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <text x="974" y="236" text-anchor="middle" font-size="11" fill="#475569">scp</text>
+</svg>

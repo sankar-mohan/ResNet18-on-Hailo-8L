@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 440" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1150" height="440" fill="#ffffff"/>
+  <text x="575" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Inference on Raspberry Pi 5 + AI HAT (infer_pi.py)</text>
+
+  <!-- Pi CPU -->
+  <rect x="20" y="60" width="760" height="360" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="400" y="88" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">Raspberry Pi 5 CPU (Python 3 · hailo_platform)</text>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="45" y="110" width="150" height="85" rx="10" fill="#fff" stroke="#64748b" stroke-width="2"/>
+    <text x="120" y="140" text-anchor="middle" font-weight="700">Image file</text>
+    <text x="120" y="162" text-anchor="middle" font-size="12">dog.jpg</text>
+    <text x="120" y="180" text-anchor="middle" font-size="12">or val_set.npz</text>
+
+    <rect x="225" y="110" width="160" height="85" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="305" y="138" text-anchor="middle" font-weight="700">preprocess()</text>
+    <text x="305" y="160" text-anchor="middle" font-size="12">short side 256</text>
+    <text x="305" y="178" text-anchor="middle" font-size="12">center-crop 224 · uint8</text>
+
+    <rect x="415" y="110" width="160" height="85" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="495" y="138" text-anchor="middle" font-weight="700">Input vstream</text>
+    <text x="495" y="160" text-anchor="middle" font-size="12">resnet18/input_layer1</text>
+    <text x="495" y="178" text-anchor="middle" font-size="12">UINT8 NHWC 224×224×3</text>
+
+    <rect x="415" y="300" width="160" height="85" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="495" y="328" text-anchor="middle" font-weight="700">Output vstream</text>
+    <text x="495" y="350" text-anchor="middle" font-size="12">resnet18/fc1 · 1000</text>
+    <text x="495" y="368" text-anchor="middle" font-size="12">uint8 → FLOAT32</text>
+
+    <rect x="225" y="300" width="160" height="85" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="305" y="328" text-anchor="middle" font-weight="700">softmax · argmax</text>
+    <text x="305" y="350" text-anchor="middle" font-size="12">top-5 classes</text>
+    <text x="305" y="368" text-anchor="middle" font-size="12">or accuracy</text>
+
+    <rect x="45" y="300" width="150" height="85" rx="10" fill="#fff" stroke="#64748b" stroke-width="2"/>
+    <text x="120" y="330" text-anchor="middle" font-weight="700">Result</text>
+    <text x="120" y="352" text-anchor="middle" font-size="12">imagenet_labels.txt</text>
+    <text x="120" y="370" text-anchor="middle" font-size="12">"Labrador retriever"</text>
+
+    <rect x="605" y="205" width="155" height="85" rx="10" fill="#fdf4ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="682" y="233" text-anchor="middle" font-weight="700">VDevice</text>
+    <text x="682" y="255" text-anchor="middle" font-size="12">configure(hef)</text>
+    <text x="682" y="273" text-anchor="middle" font-size="12">activate()</text>
+  </g>
+  <line x1="195" y1="152" x2="223" y2="152" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="385" y1="152" x2="413" y2="152" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="413" y1="342" x2="387" y2="342" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="223" y1="342" x2="197" y2="342" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- Hailo chip -->
+  <rect x="830" y="110" width="300" height="275" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
+  <text x="980" y="142" text-anchor="middle" font-size="16" font-weight="700" fill="#c2410c">Hailo-8L (AI HAT+)</text>
+  <g font-size="13" fill="#0f172a">
+    <rect x="855" y="160" width="250" height="40" rx="8" fill="#fff" stroke="#fdba74"/>
+    <text x="980" y="185" text-anchor="middle">Normalization layer</text>
+    <rect x="855" y="210" width="250" height="60" rx="8" fill="#fff" stroke="#fdba74"/>
+    <text x="980" y="235" text-anchor="middle">ResNet18 · int8</text>
+    <text x="980" y="255" text-anchor="middle" font-size="12">4 clusters · single context</text>
+    <rect x="855" y="280" width="250" height="40" rx="8" fill="#fff" stroke="#fdba74"/>
+    <text x="980" y="305" text-anchor="middle">FC 1000 (uint8 logits)</text>
+    <text x="980" y="350" text-anchor="middle" font-size="12" fill="#475569">resnet18.hef loaded by HailoRT 4.24</text>
+  </g>
+  <line x1="575" y1="152" x2="828" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="828" y1="300" x2="577" y2="342" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="760" y1="247" x2="828" y2="247" stroke="#c026d3" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a)"/>
+  <text x="800" y="165" text-anchor="middle" font-size="11" fill="#475569">PCIe Gen 3</text>
+</svg>
